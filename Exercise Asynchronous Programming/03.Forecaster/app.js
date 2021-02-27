@@ -9,8 +9,8 @@ attachEvents();
 async function weather() {
 
     let location = document.getElementById('location');
-
     let code = await getCode(location.value);
+    location.value = '';
 
     let [today, upcoming] = await Promise.all([
         getToday(code),
@@ -25,15 +25,15 @@ async function weather() {
         "Degrees": '&#176;'
     }
 
-    //current forecast
-    document.getElementById('forecast').style.display = 'block';
-
+    document.getElementById('forecast').style.display = 'block'
     let divCurrent = document.getElementById('current');
 
+    //current forecast
     let divForecast = create('div', 'forecast');
     let spanSymbol = create('span', 'condition symbol', symbols[today.forecast.condition]);
     let spanCondition = create('span', 'condition');
-    divCurrent.appendChild(append(divForecast, spanSymbol))
+    divCurrent.appendChild(append(divForecast, spanSymbol));
+
     //current forecast // condition spans
     let spanLoc = create('span', 'forecast-data', today.name);
     let spanDeg = create('span', 'forecast-data', `${today.forecast.low}${symbols['Degrees']}/${today.forecast.high}${symbols['Degrees']}`);
@@ -53,17 +53,27 @@ async function weather() {
     });
 
     divUpcoming.appendChild(divForecastInfo);
-
 }
 
 async function getCode(location) {
-    let url = `http://localhost:3030/jsonstore/forecaster/locations`;
-    let response = await fetch(url);
-    let data = await response.json();
 
-    let code = data.find(x => x.name.toLowerCase() == location.toLowerCase()).code;
+    try {
+        let url = `http://localhost:3030/jsonstore/forecaster/locations`;
+        let response = await fetch(url);
+        let data = await response.json();
 
-    return code
+        if (data.find(x => x.name.toLowerCase() == location.toLowerCase()) == false) {
+            document.querySelector('.label').textContent = 'Error';
+        }
+
+        let code = data.find(x => x.name.toLowerCase() == location.toLowerCase()).code;
+
+        return code
+
+    } catch (err) {
+        alert('Error');
+    }
+
 }
 
 async function getToday(code) {
