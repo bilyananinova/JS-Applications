@@ -10,14 +10,14 @@ async function getProfile() {
     let main = document.getElementById('main');
     main.innerHTML = '';
     Object.values(data).forEach((element, i) => {
-
+        let name = `user${i+1}Locked`
         let divProfile = create('div', ['class=profile']);
         let img = create('img', ['src=./iconProfile2.png', 'class=userIcon']);
         let labelLock = create('label', '', 'Lock');
-        let inputLock = create('input', ["type=radio", 'name=user1Locked', "value=lock"]);
+        let inputLock = create('input', ["type=radio", `name=${name}`, "value=lock"]);
         inputLock.setAttribute('checked', "");
         let labelUnlock = create('label', '', 'Unlock');
-        let inputUnlock = create('input', ["type=radio", 'name=user1Locked', "value=unlock"]);
+        let inputUnlock = create('input', ["type=radio", `name=${name}`, "value=unlock"]);
         let hrProfile = create('hr');
         let labelUsername = create('label', '', 'Username');
         let inputUsername = create('input', ["type=text", `name=user1Username`, `value=${element.username}`]);
@@ -39,14 +39,14 @@ async function getProfile() {
         divProfile.appendChild(append(divUserInfo, hrHide, labelEmail, inputEmail, labelAge, inputAge))
 
         button.addEventListener('click', (ev) => {
-            console.log(document.querySelector('input[type=radio]:checked').value == 'lock');
-            if (document.querySelector('input[type=radio]:checked').value == 'lock' == false) {
+            let profile = ev.target.parentNode
+
+            if (profile.querySelector('input[type=radio]:checked').value == 'lock' == false) {
                 divUserInfo.style.display = divUserInfo.style.display == 'block' ? 'none' : 'block'
 
                 ev.target.textContent = ev.target.textContent == 'Show more' ? 'Hide it' : 'Show more'
             }
         });
-
 
     });
 
