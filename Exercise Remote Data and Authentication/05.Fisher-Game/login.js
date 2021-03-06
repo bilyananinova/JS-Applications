@@ -1,70 +1,62 @@
-function loginPage() {
-    document.querySelector("form[action='/register']").addEventListener('submit', (ev) => {
-        ev.preventDefault();
-    
-        let formData = new FormData(ev.target);
-    
-        let email = formData.get('email');
-        let pass = formData.get('password');
-        let rePass = formData.get('rePass');
-    
-        if (email == '' || pass == '') {
-            return alert('All fields are required!');
-        } else if (pass != rePass) {
-            return alert('Passwords don\'t match!');
-        }
-    
-        register(email, pass);
-    })
-    
-    async function register(email, password) {
-        let url = 'http://localhost:3030/users/register';
-        let options = {
-            method: 'post',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ email, password })
-        };
-    
-        let response = await fetch(url, options);
-    
-        let data = await response.json();
-        if (response.ok) {
-            sessionStorage.setItem('authToken', data.accessToken);
-            window.location.pathname = "index.html"
-        } else {
-            return alert(data.message);
-        }
+let [registerForm, loginForm] = document.getElementsByTagName('form')
+
+registerForm.addEventListener('submit', register);
+loginForm.addEventListener('submit', login);
+
+async function register(ev) {
+    ev.preventDefault();
+
+    let formData = new FormData(ev.target);
+
+    let email = formData.get('email');
+    let password = formData.get('password');
+    let repass = formData.get('rePass');
+
+    if (email == '' || password == '' || repass == '') {
+        alert('All field are required!');
+    } else if (password != repass) {
+        alert('Passwords don\'t match!');
     }
 
-    document.querySelector("form[action='/login']").addEventListener('submit', (ev) => {
-        ev.preventDefault();
-    
-        let formData = new FormData(ev.target);
-    
-        let email = formData.get('email');
-        let pass = formData.get('password');
-    
-        login(email, pass);
+    let response = await fetch('http://localhost:3030/users/register', {
+        method: 'post',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email, password })
     })
-    
-    async function login(email, password) {
-        let url = 'http://localhost:3030/users/login';
-        let options = {
-            method: 'post',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ email, password })
-        };
-    
-        let response = await fetch(url, options);
-    
-        let data = await response.json();
-        if (response.ok) {
-            sessionStorage.setItem('authToken', data.accessToken);
-            window.location.pathname = "index.html"
-        } else {
-            return alert(data.message);
-        }
+
+    let data = await response.json();
+    if (response.ok) {
+        sessionStorage.setItem('accessToken', data.accessToken);
+        window.location.pathname = 'index.html';
+    } else {
+        return alert(data.message);
     }
+
+    ev.target.reset()
 }
 
-loginPage()
+async function login(ev) {
+    ev.preventDefault();
+
+    let formData = new FormData(ev.target);
+
+    let email = formData.get('email');
+    let password = formData.get('password');
+
+    let response = await fetch('http://localhost:3030/users/login', {
+        method: 'post',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email, password })
+    })
+
+    let data = await response.json()
+    if (response.ok) {
+        sessionStorage.setItem('accessToken', data.accessToken)
+        window.location.pathname = 'index.html'
+    } else {
+        return alert(data.message)
+    }
+
+    ev.target.reset()
+
+}
