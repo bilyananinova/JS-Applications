@@ -1,4 +1,5 @@
 let catches = document.querySelector('#catches');
+let user = sessionStorage.getItem('ownerId')
 
 function attachEvents() {
     document.querySelector('.load').addEventListener('click', loadCatches);
@@ -94,17 +95,12 @@ function createCatch(data) {
     catchDiv.appendChild(captureTimeInput);
     catchDiv.appendChild(captureTimeHr);
 
-    let updateBtn = create('button', '', 'Update');
-    let deleteBtn = create('button', '', 'Delete');
+    let updateBtn = create('button', ['class=update', 'disabled=true'], 'Update');
+    let deleteBtn = create('button', ['class=delete', 'disabled=true'], 'Delete');
 
-    if (sessionStorage.accessToken) {
-        updateBtn.setAttribute('class', 'update');
-        deleteBtn.setAttribute('class', 'delete');
-    } else {
-        updateBtn.setAttribute('class', 'update');
-        deleteBtn.setAttribute('class', 'delete');
-        updateBtn.setAttribute('disabled', '');
-        deleteBtn.setAttribute('disabled', '');
+    if (data._ownerId == user) {
+        updateBtn.disabled = false;
+        deleteBtn.disabled = false;
     }
 
     catchDiv.appendChild(updateBtn);
@@ -145,7 +141,7 @@ async function addCatch() {
 
     }
 
-    loadCatches()
+    loadCatches();
 }
 
 async function updateCatch(parent, id) {
@@ -207,9 +203,9 @@ function create(type, attributes, content) {
             element.setAttribute(type, value);
         }
     }
-    
     if (content) {
         element.textContent = content;
     }
     return element;
+
 }
