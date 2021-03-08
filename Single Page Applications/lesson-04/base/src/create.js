@@ -1,3 +1,5 @@
+import { showDetails } from './details.js'
+
 async function onSubmit(data) {
     const body = JSON.stringify({
         name: data.name,
@@ -8,7 +10,7 @@ async function onSubmit(data) {
 
     const token = sessionStorage.getItem('authToken');
     if (token == null) {
-        return window.location.pathname = 'index.html';
+        return  alert('You\'re not logged in!');
     }
 
     try {
@@ -20,9 +22,10 @@ async function onSubmit(data) {
             },
             body
         });
-        
+
         if (response.status == 200) {
-            onSuccess();
+            let recipe = await response.json()
+            showDetails(recipe.id);
         } else {
             throw new Error(await response.json());
         }
@@ -33,12 +36,12 @@ async function onSubmit(data) {
 
 let main;
 let section;
-let onSuccess;
+let setActivNav;
 
-export async function setUpCreate(mainTarget, sectionTarget, onSuccessTarget) {
+export async function setUpCreate(mainTarget, sectionTarget, setActiveNavCB) {
     main = mainTarget;
     section = sectionTarget;
-    onSuccess = onSuccessTarget;
+    setActivNav = setActiveNavCB
 
     const form = section.querySelector('form');
 
@@ -50,6 +53,8 @@ export async function setUpCreate(mainTarget, sectionTarget, onSuccessTarget) {
 }
 
 export async function showCreate() {
+    setActivNav('createLink');
+
     main.innerHTML = '';
     main.appendChild(section);
 }
