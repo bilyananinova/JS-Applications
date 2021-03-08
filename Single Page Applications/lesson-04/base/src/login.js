@@ -1,3 +1,5 @@
+import { showCatalog } from './catalog.js'
+
 async function onSubmit(data) {
     const body = JSON.stringify({
         email: data.email,
@@ -15,7 +17,11 @@ async function onSubmit(data) {
         const data = await response.json();
         if (response.status == 200) {
             sessionStorage.setItem('authToken', data.accessToken);
-            onSuccess();
+            sessionStorage.setItem('userId', data._id);
+            sessionStorage.setItem('email', data.email);
+            document.getElementById('user').style.display = 'inline-block';
+            document.getElementById('guest').style.display = 'none';
+            showCatalog();
         } else {
             throw new Error(data.message);
         }
@@ -26,12 +32,12 @@ async function onSubmit(data) {
 
 let main;
 let section;
-let onSuccess;
+let setActivNav;
 
-export async function setUpLogin(mainTarget, sectionTarget, onSuccessTarget) {
+export async function setUpLogin(mainTarget, sectionTarget, setActiveNavCB) {
     main = mainTarget;
     section = sectionTarget;
-    onSuccess = onSuccessTarget;
+    setActivNav = setActiveNavCB;
 
     const form = section.querySelector('form');
 
@@ -43,6 +49,8 @@ export async function setUpLogin(mainTarget, sectionTarget, onSuccessTarget) {
 }
 
 export async function showLogin() {
+    setActivNav('loginLink');
+
     main.innerHTML = '';
     main.appendChild(section);
 }
