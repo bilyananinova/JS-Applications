@@ -2,9 +2,8 @@ import { setUpCatalog, showCatalog } from './catalog.js';
 import { setUpLogin, showLogin } from './login.js';
 import { setUpRegister, showRegister } from './register.js';
 import { setUpCreate, showCreate } from './create.js';
-
-
-
+import { setUpDetails } from './details.js'
+import { setUpEdit } from './edit.js';
 
 main();
 
@@ -16,18 +15,22 @@ function main() {
     let loginSection = document.getElementById('loginSection');
     let registerSection = document.getElementById('registerSection');
     let createSection = document.getElementById('createSection');
+    let detailsSection = document.getElementById('detailsSection');
+    let editSection = document.getElementById('editSection');
 
     let links = {
         'catalogLink': showCatalog,
         'loginLink': showLogin,
         'registerLink': showRegister,
-        'createLink': showCreate
+        'createLink': showCreate,
     }
 
-    setUpCatalog(main, catalogSection);
-    setUpLogin(main, loginSection, () => { setUserNav(); setActivNav('catalogLink'); showCatalog(); });
-    setUpRegister(main, registerSection, () => { setUserNav(); setActivNav('catalogLink'); showCatalog(); });
-    setUpCreate(main, createSection, () => { setActivNav('catalogLink'); showCatalog() });
+    setUpCatalog(main, catalogSection, setActivNav);
+    setUpLogin(main, loginSection, setActivNav);
+    setUpRegister(main, registerSection, setActivNav);
+    setUpCreate(main, createSection, setActivNav);
+    setUpDetails(main, detailsSection, setActivNav);
+    setUpEdit(main, editSection, setActivNav);
     setUpNavigation();
 
     showCatalog();
@@ -43,6 +46,8 @@ function main() {
     }
 
     function setUpNavigation() {
+        document.getElementById('logoutBtn').addEventListener('click', logout);
+
         nav.addEventListener('click', (ev) => {
             if (ev.target.tagName == 'A') {
                 console.log(ev.target.id);
@@ -62,7 +67,6 @@ function main() {
         if (sessionStorage.getItem('authToken') != null) {
             document.getElementById('user').style.display = 'inline-block';
             document.getElementById('guest').style.display = 'none';
-            document.getElementById('logoutBtn').addEventListener('click', logout);
         } else {
             document.getElementById('guest').style.display = 'inline-block';
             document.getElementById('user').style.display = 'none';
@@ -78,7 +82,8 @@ function main() {
         });
         if (response.status == 200) {
             sessionStorage.removeItem('authToken');
-            setUserNav();
+            sessionStorage.removeItem('userId');
+            sessionStorage.removeItem('email');
             showCatalog();
         } else {
             console.error(await response.json());
