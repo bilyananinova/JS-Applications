@@ -22,26 +22,28 @@ async function loadCatches() {
 
 function logInUsers() {
     document.querySelector(".add").disabled = false;
+    
+    let logout = document.querySelector('#guest a');
+    logout.textContent = 'Logout';
+    logout.addEventListener('click', () => {
+        sessionStorage.clear();
+    })
+
 
     document.querySelector('body').addEventListener('click', (ev) => {
         if (ev.target.className == 'update') {
-            console.log('click update button');
             let parent = ev.target.parentNode;
             let id = ev.target.parentNode.id;
-            console.log(id);
             updateCatch(parent, id);
         } else if (ev.target.className == 'delete') {
-            console.log('click delete button');
             let parent = ev.target.parentNode;
             let id = ev.target.parentNode.id;
-            console.log(id);
             deleteCatch(parent, id);
         } else if (ev.target.className == 'add') {
-            console.log('click add button');
             addCatch();
         }
     })
-    console.log(sessionStorage.accessToken);
+
 }
 
 function createCatch(data) {
@@ -162,7 +164,6 @@ async function updateCatch(parent, id) {
         body: JSON.stringify({ angler, weight, species, location, bait, captureTime }),
     })
     let data = await response.json();
-    console.log(data);
 
 
     if (response.ok) {
@@ -189,7 +190,6 @@ async function deleteCatch(parent, id) {
 
         let data = await response.json();
         parent.remove();
-        console.log(data);
     }
 
     loadCatches();
