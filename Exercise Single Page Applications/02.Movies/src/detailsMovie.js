@@ -3,18 +3,19 @@ import { showEdit } from './editMovie.js'
 import { deleteMovieById } from './deleteMovie.js'
 
 async function getLikeByMovie(id) {
-    let response = await fetch(`http://localhost:3030/data/likes?where=movieId%3D%22${id}%22&distinct=_ownerId&count`)
-    let data = await response.json()
-    return data
+    let response = await fetch(`http://localhost:3030/data/likes?where=movieId%3D%22${id}%22&distinct=_ownerId&count`);
+    let data = await response.json();
+
+    return data;
 
 }
 
 async function getLikeByUser(id) {
 
     let user = sessionStorage.getItem('ownerId');
-
-    let response = await fetch(`http://localhost:3030/data/likes?where=movieId%3D%22${id}%22%20and%20_ownerId%3D%22${user}%22`)
+    let response = await fetch(`http://localhost:3030/data/likes?where=movieId%3D%22${id}%22%20and%20_ownerId%3D%22${user}%22`);
     let data = await response.json();
+
     return data;
 }
 
@@ -75,28 +76,23 @@ function createMoviecard(movie, likes, ownlike) {
     return container;
 
     async function likeMovie(ev) {
-        ev.preventDefault()
-        let token = sessionStorage.getItem('accessToken')
-        let response = await fetch(`http://localhost:3030/data/likes`, {
+        ev.preventDefault();
+        const token = sessionStorage.getItem('accessToken');
+        const response = await fetch('http://localhost:3030/data/likes', {
             method: 'post',
             headers: {
-                'Content-Type': 'application/json',
+                'Content-type': 'application/json',
                 'X-Authorization': token
             },
-            body: JSON.stringify({ movie: movie._id })
-        })
+            body: JSON.stringify({ movieId: movie._id })
+        });
 
         if (response.ok) {
             ev.target.remove()
             likes++;
             span.textContent = `Liked ${likes}`
         }
-
-
-
     }
-
-
 }
 
 let main;
@@ -111,15 +107,13 @@ export async function showDetails(id) {
     section.innerHTML = '';
     main.innerHTML = '';
     main.appendChild(section);
-
+    console.log(id);
     let [movie, likes, ownlike] = await Promise.all([
-
         getMovieById(id),
         getLikeByMovie(id),
-        getLikeByUser(id),
-
+        getLikeByUser(id)
     ]);
-
+    
     let detail = createMoviecard(movie, likes, ownlike);
     section.appendChild(detail);
 
