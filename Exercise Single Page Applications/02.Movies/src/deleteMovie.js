@@ -11,8 +11,10 @@ export async function deleteMovieById(id) {
                 'X-Authorization': sessionStorage.getItem('accessToken')
             },
         })
-
-        showHome()
+        if (response.ok) {
+            alert('Movie deleted');
+            showHome()
+        }
 
     }
 
