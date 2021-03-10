@@ -41,14 +41,14 @@ function createMoviecard(movie, likes, ownlike) {
     col4.appendChild(description);
 
     if (sessionStorage.getItem('accessToken') !== null) {
-        if (movie._ownerId !== sessionStorage.getItem('ownerId') || ownlike) {
+        if (movie._ownerId !== sessionStorage.getItem('ownerId')) {
+            if (ownlike.length == 0) {
                 let like = create('a', ["class=btn btn-primary", "href=#"], 'Like');
 
                 col4.appendChild(like);
                 like.addEventListener('click', likeMovie)
-
+            }
         } else {
-
             let del = create('a', ["class=btn btn-danger", "href=#"], 'Delete');
             let edit = create('a', ["class=btn btn-warning", "href=#"], 'Edit');
 
@@ -76,11 +76,12 @@ function createMoviecard(movie, likes, ownlike) {
 
     async function likeMovie(ev) {
         ev.preventDefault()
+        let token = sessionStorage.getItem('accessToken')
         let response = await fetch(`http://localhost:3030/data/likes`, {
             method: 'post',
             headers: {
                 'Content-Type': 'application/json',
-                'X-Authorization': sessionStorage.getItem('accessToken')
+                'X-Authorization': token
             },
             body: JSON.stringify({ movie: movie._id })
         })
@@ -94,10 +95,9 @@ function createMoviecard(movie, likes, ownlike) {
 
 
     }
+
+
 }
-
-
-
 
 let main;
 let section;
@@ -115,8 +115,8 @@ export async function showDetails(id) {
     let [movie, likes, ownlike] = await Promise.all([
 
         getMovieById(id),
-        getLikeByUser(id),
         getLikeByMovie(id),
+        getLikeByUser(id),
 
     ]);
 
@@ -125,4 +125,3 @@ export async function showDetails(id) {
 
 
 }
-
