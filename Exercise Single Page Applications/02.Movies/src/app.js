@@ -8,25 +8,13 @@ import { logout } from './logout.js'
 
 let main = document.querySelector('main');
 
-//setup функции
-//•	Get all movies: /data/movies (GET)
 setupSection('home-page', setupHome)
-//• Delete movie: /data/movies/:id (DELETE)
-//• Get number of likes for a movie: /data/likes?where=movieId%3D%22{movieId}%22&distinct=_ownerId&count (GET)
-//• Get like for a movie from specific user: /data/likes?where=movieId%3D%22{movieId}%22%20and%20_ownerId%3D%22{userId}%22 (GET)
-//• Add a like: /data/likes (POST)
-//• Revoke a like: /data/likes/:id (DELETE)
 setupSection('movie-example', setupDetails)
 setupSection('form-login', setupLogin)
 setupSection('form-sign-up', setupRegister)
-//•	Create movie: /data/movies (POST)
 setupSection('add-movie', setupCreate)
-//•	Update movie: /data/movies/:id (PUT)
 setupSection('edit-movie', setupEdit)
 setupNavigation();
-
-
-
 
 showHome();
 
