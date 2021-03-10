@@ -1,4 +1,4 @@
-import { getCommentById } from './comments.js'
+import { getCommentByPost, showContent } from './comments.js'
 
 document.querySelector('#home').addEventListener('click', (ev) => {
     if (ev.target.tagName == 'H2') {
@@ -7,9 +7,8 @@ document.querySelector('#home').addEventListener('click', (ev) => {
         while (parent.className != 'topic-container') {
             parent = parent.parentNode;
         }
-        let id = parent._id;
-        debugger
-        getCommentById(id)
+        let id = parent.id;
+        showContent(id)
     }
 });
 
