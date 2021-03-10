@@ -56,18 +56,14 @@ export function setupPost(mainTarget, sectionTarget) {
 
             form.addEventListener('submit', (ev) => {
                 ev.preventDefault();
-                const formData = new FormData(ev.target);
+                let formData = new FormData(ev.target);
 
                 let topic = formData.get('topicName')
                 let username = formData.get('username')
                 let postText = formData.get('postText')
 
-                console.log(topic);
-                console.log(username);
-                console.log(postText);
-
                 if (topic != '' || username != '' || postText != '') {
-                    createPost(topic, username, postText, section)
+                    createPost(topic, username, postText)
 
                     ev.target.reset()
                 } else {
