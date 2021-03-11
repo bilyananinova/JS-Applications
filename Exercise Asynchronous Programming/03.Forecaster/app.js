@@ -14,6 +14,7 @@ async function weather() {
         divCurrent.innerHTML = '';
         divUpcoming.innerHTML = '';
         
+        
         let location = document.getElementById('location');
         let code = await getCode(location.value);
         location.value = '';
@@ -34,6 +35,9 @@ async function weather() {
         document.getElementById('forecast').style.display = 'block'
 
         //current forecast
+        let divCurrentLabel = create('div', 'label', 'Current conditions');
+        divCurrent.appendChild(divCurrentLabel);
+
         let divForecast = create('div', 'forecast');
         let spanSymbol = create('span', 'condition symbol', symbols[today.forecast.condition]);
         let spanCondition = create('span', 'condition');
@@ -47,6 +51,9 @@ async function weather() {
         divForecast.appendChild(append(spanCondition, spanLoc, spanDeg, spanCon));
 
         //upcoming forecast
+        let divUpcomingLabel = create('div', 'label', 'Three-day forecast')
+        divUpcoming.appendChild(divUpcomingLabel);
+
         let divForecastInfo = create('div', 'forecast-info');
         upcoming.forecast.forEach(element => {
             let spanUpcoming = create('span', 'upcoming')
