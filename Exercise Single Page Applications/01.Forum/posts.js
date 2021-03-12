@@ -1,14 +1,62 @@
 import { apend } from "./home.js";
 
-async function createPost(topic, username, post) {
+let main;
+let section
+
+export function setupPost(mainTarget, sectionTarget) {
+    main = mainTarget;
+    section = sectionTarget;
+
+    let cancelBtn = section.querySelector('.cancel');
+    let publiclBtn = section.querySelector('.public');
+
+    cancelBtn.addEventListener('click', clear);
+    publiclBtn.addEventListener('click', post);
+}
+
+export function showPost() {
+    main.innerHTML = '';
+    main.appendChild(section)
+
+}
+
+function post(ev) {
+    ev.preventDefault();
+    let date = new Date().toLocaleString();
+
+    let topic = section.querySelector('input[name=topicName]').value
+    let username = section.querySelector('input[name=username]').value
+    let postText = section.querySelector('textarea[name=postText]').value
+
+    if (topic != '' || username != '' || postText != '') {
+        createPost(topic, username, postText, date)
+        section.querySelector('input[name=topicName]').value = ''
+        section.querySelector('input[name=username]').value = ''
+        section.querySelector('textarea[name=postText]').value = ''
+    } else {
+        alert('All fielad are reqired!')
+    }
+
+};
+
+function clear(ev) {
+    ev.preventDefault();
+
+    section.querySelector('input[name=topicName]').value = ''
+    section.querySelector('input[name=username]').value = ''
+    section.querySelector('textarea[name=postText]').value = ''
+
+};
+
+async function createPost(topic, username, post, date) {
 
     let response = await fetch('http://localhost:3030/jsonstore/collections/myboard/posts', {
         method: "post",
         headers: {
             "Content-Type": "application/json"
         },
-        body: JSON.stringify({ topic, username, post }),
-    
+        body: JSON.stringify({ topic, username, post,date }),
+
     });
 
     if (response.status == 200) {
@@ -25,13 +73,10 @@ async function createPost(topic, username, post) {
                             </a>
                             <div class="columns">
                                 <div>
-                                    <p>Date: <time>2020-10-10T12:08:28.451Z</time></p>
+                                    <p>Date: <time>${date}</time></p>
                                     <div class="nick-name">
                                         <p>Username: <span>${post.username}</span></p>
                                     </div>
-                                </div>
-                                <div class="subscribers">
-                                    <p>Subscribers: <span>456</span></p>
                                 </div>
                             </div>
                         </div>`
@@ -40,45 +85,5 @@ async function createPost(topic, username, post) {
     } else {
         throw new Error(await response.json());
     }
-
-}
-
-let main;
-let section
-
-export function setupPost(mainTarget, sectionTarget) {
-    main = mainTarget;
-    section = sectionTarget;
-
-    [...section.querySelectorAll('button')].forEach(b => b.addEventListener('click', (ev) => {
-        if (ev.target.className == 'public') {
-            let form = section.querySelector('form');
-
-            form.addEventListener('submit', (ev) => {
-                ev.preventDefault();
-                let formData = new FormData(ev.target);
-
-                let topic = formData.get('topicName')
-                let username = formData.get('username')
-                let postText = formData.get('postText')
-
-                if (topic != '' || username != '' || postText != '') {
-                    createPost(topic, username, postText)
-
-                    ev.target.reset()
-                } else {
-                    ev.target.reset()
-                }
-            });
-        } else if (ev.target.className == 'cancel') {
-            showHome()
-        }
-    }))
-
-}
-
-export function showPost() {
-    main.innerHTML = '';
-    main.appendChild(section)
 
 }
