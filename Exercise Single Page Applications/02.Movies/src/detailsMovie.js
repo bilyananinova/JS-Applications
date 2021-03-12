@@ -113,7 +113,7 @@ export async function showDetails(id) {
         getLikeByMovie(id),
         getLikeByUser(id)
     ]);
-    
+    console.log(ownlike);
     let detail = createMoviecard(movie, likes, ownlike);
     section.appendChild(detail);
 
