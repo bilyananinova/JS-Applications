@@ -18,9 +18,9 @@ async function update(ev, id) {
     let description = formData.get('description');
     let imageUrl = formData.get('imageUrl');
 
-    // if (title == '' || description == '' || imageUrl == '') {
-    //     return alert('All fields are required!');
-    // }
+    if (title == '' || description == '' || imageUrl == '') {
+        return alert('All fields are required!');
+    }
 
     let response = await fetch('http://localhost:3030/data/movies/' + id, {
         method: 'put',
