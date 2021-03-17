@@ -1,5 +1,4 @@
 import { html } from '../node_modules/lit-html/lit-html.js';
-import *  as api from './api/data.js';
 
 let rows = (book) => html`
 <tr >
@@ -37,7 +36,7 @@ let createForm = () => html`
 
 let editForm = (editBook) => html`
 <form id="edit-form">
-    <input type="hidden" name="_id">
+    <input type="hidden" name="_id" .value=${editBook._id}>
     <h3>Edit book</h3>
     <label>TITLE</label>
     <input type="text" name="title" placeholder="Title..." .value=${editBook.title}>
@@ -62,4 +61,3 @@ function onClick(ev, ctx) {
 }
 
 export default layout
-
