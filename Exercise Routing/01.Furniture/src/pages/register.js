@@ -1,5 +1,5 @@
 import { html } from '../../node_modules/lit-html/lit-html.js';
-import { register } from '../api/data.js'
+import { register } from '../api/data.js';
 
 let registerTemplate = (submit) => html`
 <div class="row space-top">
@@ -30,7 +30,7 @@ let registerTemplate = (submit) => html`
 
 export async function registerPage(ctx) {
     // console.log('registerPage');
-    ctx.render(registerTemplate(submit))
+    ctx.render(registerTemplate(submit));
 
     async function submit(ev) {
         ev.preventDefault();
@@ -41,15 +41,13 @@ export async function registerPage(ctx) {
         let rePass = formData.get('rePass').trim();
 
         if (email == '' || password == '' || rePass == '') {
-            alert('All field are required!')
+            alert('All field are required!');
         } else if (password != rePass) {
-            alert('Password don\'t match!')
+            alert('Password don\'t match!');
         } else {
             await register(email, password);
             ctx.setUserNav();
-            ctx.page.redirect('/')
+            ctx.page.redirect('/');
         }
-
-
     }
 }
