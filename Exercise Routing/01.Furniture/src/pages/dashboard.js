@@ -1,5 +1,5 @@
 import { html } from '../../node_modules/lit-html/lit-html.js';
-import { getItems } from '../api/data.js'
+import { getItems } from '../api/data.js';
 
 let dashboardTemplate = (list) => html`<div class="row space-top">
     <div class="col-md-12">
@@ -12,7 +12,7 @@ let dashboardTemplate = (list) => html`<div class="row space-top">
     <div class="col-md-4">
         <div class="card text-white bg-primary">
             <div class="card-body">
-                <img src="${item.img}" />
+                <img src="${item.img}"/>
                 <p>Description here</p>
                 <footer>
                     <p>Price: <span>${item.price} $</span></p>
@@ -26,7 +26,7 @@ let dashboardTemplate = (list) => html`<div class="row space-top">
 </div>`;
 
 export async function dashboardPage(ctx) {
-    console.log('dashboardPage');
+    // console.log('dashboardPage');
     let list = await getItems();
     ctx.setUserNav();
     ctx.render(dashboardTemplate(list));
