@@ -1,5 +1,5 @@
 import { html } from '../../node_modules/lit-html/lit-html.js';
-import { getItemById, updateItem } from '../api/data.js'
+import { getItemById, updateItem } from '../api/data.js';
 
 let editTemplate = (item, submit) => html`<div class="row space-top">
     <div class="col-md-12">
@@ -50,7 +50,6 @@ let editTemplate = (item, submit) => html`<div class="row space-top">
 export async function editPage(ctx) {
     // console.log('editPage');
     // console.log(ctx.params.id);
-
     let item = await getItemById(ctx.params.id);
     ctx.render(editTemplate(item, submit));
 
