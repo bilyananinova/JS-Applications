@@ -13,13 +13,13 @@ let myPageTemplate = (items) => html`
     <div class="col-md-4">
         <div class="card text-white bg-primary">
             <div class="card-body">
-                <img src="${item.img}"/>
+                <img src=${item.img}/>
                 <p>Description here</p>
                 <footer>
                     <p>Price: <span>${item.price} $</span></p>
                 </footer>
                 <div>
-                    <a href="/details/${item._id}" class="btn btn-info">Details</a>
+                    <a href=${`/details/${item._id}`} class="btn btn-info">Details</a>
                 </div>
             </div>
         </div>
@@ -28,7 +28,6 @@ let myPageTemplate = (items) => html`
 
 export async function myPage(ctx) {
     // console.log('myPage');
-
     let items = await getItemByUserId(sessionStorage.getItem('ownerId'));
     ctx.render(myPageTemplate(items));
 }
