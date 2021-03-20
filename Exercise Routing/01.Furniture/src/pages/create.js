@@ -68,7 +68,7 @@ export async function createPage(ctx) {
             return alert('Year must be between 1950 and 2050');
         }
 
-        if (formData.get('description').length <= 10) {
+        if (formData.get('description').length > 10) {
             return alert('Description must be more than 10 symbols');
         }
 
