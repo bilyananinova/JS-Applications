@@ -1,16 +1,19 @@
 import { render } from '../node_modules/lit-html/lit-html.js'
 import create from './templates.js'
 
-let list = [];
 let div = document.querySelector('div')
 let input = document.querySelector('[type=text]')
+start()
 
-update(list)
-
-async function update(list) {
+async function start () {
     document.querySelector('[type=submit]').addEventListener('click', (ev) => addItem(ev, list))
     let towns = await (await fetch('http://localhost:3030/jsonstore/advanced/dropdown')).json()
-    list = Object.values(towns)
+    let list = Object.values(towns)
+    update(list)
+    
+}
+
+async function update(list) {
     let result = create(list)
     render(result, div)
 }
@@ -29,8 +32,8 @@ async function addItem(ev, list) {
 
     })
     let data = await response.json()
-    console.log(data);
-    list.push(data)
 
+    list.push(data)
+    input.value = ''
     update(list)
 }
