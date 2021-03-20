@@ -39,7 +39,6 @@ export async function detailsPage(ctx) {
     ctx.render(detailsTemplate(item, delItem));
 
     async function delItem() {
-        debugger
         let confirmation = confirm('Are you sure you want to delete this item?');
         if (confirmation) {
             await deleteItem(ctx.params.id);
