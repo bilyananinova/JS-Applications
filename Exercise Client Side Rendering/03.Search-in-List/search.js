@@ -12,15 +12,17 @@ function search() {
    let result = createTemplate(towns, input);
    render(result, div);
 
-   let counts = towns.filter(t => input && t.toLowerCase().includes(input.toLowerCase())).length;
+   let counts = towns.filter(t => input  && t.toLowerCase().includes(input.toLowerCase())).length;
    if (counts) {
       matches.textContent = `${counts} matches fount`;
    } else {
-      '0 matches found';
+      matches.textContent = '';
    }
 }
 
 search()
+
+
 
 
 
