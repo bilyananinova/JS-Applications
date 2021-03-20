@@ -1,5 +1,5 @@
 import { html } from '../../node_modules/lit-html/lit-html.js';
-import { getItemById, deleteItem } from '../api/data.js'
+import { getItemById, deleteItem } from '../api/data.js';
 
 let detailsTemplate = (item, delItem) => html`
 <div class="row space-top">
@@ -11,7 +11,7 @@ let detailsTemplate = (item, delItem) => html`
     <div class="col-md-4">
         <div class="card text-white bg-primary">
             <div class="card-body">
-                <img src="${item.img}" />
+                <img src="${item.img}"/>
             </div>
         </div>
     </div>
@@ -42,7 +42,7 @@ export async function detailsPage(ctx) {
         let confirmation = confirm('Are you sure you want to delete this item?');
         if (confirmation) {
             await deleteItem(ctx.params.id);
-            ctx.page.redirect('/')
+            ctx.page.redirect('/');
         }
     }
 }
