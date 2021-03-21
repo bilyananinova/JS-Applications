@@ -1,7 +1,7 @@
 import { html } from '../../node_modules/lit-html/lit-html.js';
 import { register } from '../api/data.js';
 
-let registerTemplate = (submit) => html`
+let registerTemplate = (submit, invalidMail, invalidPassword, invalidRepassword) => html`
 <div class="row space-top">
     <div class="col-md-12">
         <h1>Register New User</h1>
@@ -13,15 +13,18 @@ let registerTemplate = (submit) => html`
         <div class="col-md-4">
             <div class="form-group">
                 <label class="form-control-label" for="email">Email</label>
-                <input class="form-control" id="email" type="text" name="email">
+                <input class=${'form-control' + (invalidMail == true ? ' is-invalid' : '') + (invalidMail == false ? ' is-valid' : '')} id="email" type="text"
+                    name="email">
             </div>
             <div class="form-group">
                 <label class="form-control-label" for="password">Password</label>
-                <input class="form-control" id="password" type="password" name="password">
+                <input class=${'form-control' + (invalidPassword == true ? ' is-invalid' : '') + (invalidPassword == false ? ' is-valid' : '')} id="password" type="password"
+                    name="password">
             </div>
             <div class="form-group">
                 <label class="form-control-label" for="rePass">Repeat</label>
-                <input class="form-control" id="rePass" type="password" name="rePass">
+                <input class=${'form-control' + (invalidRepassword == true ? ' is-invalid' : '') + (invalidRepassword == false ? ' is-valid' : '')} id="rePass" type="password"
+                    name="rePass">
             </div>
             <input type="submit" class="btn btn-primary" value="Register" />
         </div>
@@ -41,9 +44,11 @@ export async function registerPage(ctx) {
         let rePass = formData.get('rePass').trim();
 
         if (email == '' || password == '' || rePass == '') {
-            alert('All field are required!');
+            ctx.render(registerTemplate(submit, email == '', password == '', rePass == ''));
+            return alert('All field are required!');
         } else if (password != rePass) {
-            alert('Password don\'t match!');
+            ctx.render(registerTemplate(submit, false, true, true));
+            return alert('Password don\'t match!');
         } else {
             await register(email, password);
             ctx.setUserNav();
