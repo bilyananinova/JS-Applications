@@ -2,92 +2,110 @@ export let settings = {
     host: '',
 }
 
-async function request(url, options) {
-    try {
-        let response = await fetch(url, options);
-
-        if (response.ok == false) {
-            let error = await response.json();
-            alert(error.message);
-            throw new Error(error.message);
-        }
-
-        try {
-            let data = await response.json();
-            return data;
-
-        } catch (err) {
-            return response;
-        }
-    } catch (err) {
-        alert(err.message);
-        throw new Error(err.message);
-    }
-
-
-}
-
-function options(method = 'get', data) {
-    let result = {
-        method,
-        headers: {}
-    };
-
-    if (data) {
-        result.headers['Content-Type'] = 'application/json'
-        result.body = JSON.stringify(data)
-    }
-
-    let token = sessionStorage.getItem('token')
-    if (token != null) {
-        result.headers['X-Authorization'] = token
-    }
-
-    return result
-}
-
 export async function get(url) {
-    return request(url, options())
+    let response = await fetch(url)
+    let data = response.json()
+    return data;
 }
 
-export async function post(url, data) {
-    return request(url, options('post', data))
+export async function post(url, body) {
+    let response = await fetch(url, {
+        method: 'post',
+        headers: {
+            'Content-Type': 'application/json',
+            'X-Authorization': sessionStorage.getItem('token')
+        },
+        body: JSON.stringify(body)
+    })
+
+    let data = response.json()
+    return data;
 }
 
-export async function put(url, data) {
-    return request(url, options('put', data))
+export async function put(url, body) {
+    let response = await fetch(url, {
+        method: 'put',
+        headers: {
+            'Content-Type': 'application/json',
+            'X-Authorization': sessionStorage.getItem('token')
+        },
+        body: JSON.stringify(body)
+    })
+
+    return response.json()
+
 }
 
 export async function del(url) {
-    return request(url, options('delete'))
+    let response = await fetch(url, {
+        method: 'delete',
+        headers: {
+            'Content-Type': 'application/json',
+            'X-Authorization': sessionStorage.getItem('token')
+        }
+    })
+
+    return response
 }
 
 export async function login(email, password) {
-    const response = await post(settings.host + '/users/login', { email, password })
+    let response = await fetch(settings.host + '/users/login', {
+        method: 'post',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email, password })
+    })
 
-    sessionStorage.setItem('token', response.accessToken);
-    sessionStorage.setItem('email', response.email);
-    sessionStorage.setItem('ownerId', response._id);
+    if (response.status == 200) {
+        let data = await response.json();
+        sessionStorage.setItem('token', data.accessToken);
+        sessionStorage.setItem('email', data.email);
+        sessionStorage.setItem('ownerId', data._id);
 
-    return response
+        return response;
+    } else {
+        let error = await response.json();
+        return error.message;
+    }
 }
 
 export async function register(email, password) {
-    const response = await post(settings.host + '/users/register', { email, password })
 
-    sessionStorage.setItem('token', response.accessToken);
-    sessionStorage.setItem('email', response.email);
-    sessionStorage.setItem('ownerId', response._id);
+    let response = await fetch(settings.host + '/users/register', {
+        method: 'post',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email, password })
+    })
 
-    return response
+    if (response.ok) {
+        let data = await response.json();
+        sessionStorage.setItem('token', data.accessToken);
+        sessionStorage.setItem('ownerId', data._id);
+        sessionStorage.setItem('email', data.email);
+
+        return response;
+    } else {
+        let error = await response.json();
+        return error.message;
+    }
+
 }
 
 export async function logout() {
-    const response = await get(settings.host + '/users/logout')
+    let response = await fetch(settings.host + '/users/logout', {
+        method: 'get',
+        headers: {
+            'X-Authorization': sessionStorage.getItem('token')
+        },
+    });
 
-    sessionStorage.removeItem('token');
-    sessionStorage.removeItem('email');
-    sessionStorage.removeItem('ownerId');
-
-    return response
+    if (response.status == 200) {
+        sessionStorage.removeItem('token');
+        sessionStorage.removeItem('ownerId');
+        sessionStorage.removeItem('email');
+        sessionStorage.clear();
+        return response;
+    } else {
+        let error = await response.json();
+        return error.message;
+    }
 }
