@@ -10,7 +10,6 @@ let createTemplate = (submit) => html`
                 <input type="text" id="title" name="title" placeholder="Arrays">
                 <label for="title">Title:</label>
             </p>
-
             <p class="field category">
                 <input type="text" id="category" name="category" placeholder="JavaScript">
                 <label for="category">Category:</label>
@@ -19,11 +18,9 @@ let createTemplate = (submit) => html`
                 <textarea name="content" id="content"></textarea>
                 <label for="content">Content:</label>
             </p>
-
             <p class="field submit">
                 <button class="btn submit" type="submit">Create</button>
             </p>
-
         </fieldset>
     </form>
 </div>`;
