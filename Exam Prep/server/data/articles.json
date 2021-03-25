@@ -1,50 +1,42 @@
 {
-    "JavaScript": {
-        "401703e2-d733-43a9-934a-b68efac70e85": {
-            "title": "title",
-            "category": "JavaScript",
-            "content": "content",
-            "email": "peter@abv.bg",
-            "owner": "35c62d76-8152-4626-8712-eeb96381bea8",
-            "_id": "401703e2-d733-43a9-934a-b68efac70e85"
-        },
-        "401703e2-d733-43a9-934a-b68efac70e89": {
-            "title": "title",
-            "category": "JavaScript",
-            "content": "content",
-            "email": "peter@abv.bg",
-            "owner": "35c62d76-8152-4626-8712-eeb96381bea8",
-            "_id": "401703e2-d733-43a9-934a-b68efac70e85"
-        }
+    "2607c8d4-f563-429b-ada7-bb40827330cf": {
+        "title": "Arrays",
+        "category": "JavaScript",
+        "content": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Deleniti, excepturi magnam aliquid quamest fugit ipsa quidem impedit praesentium tempore placeat numquam blanditiis fuga soluta beatae perspiciatis voluptas atque obcaecati?",
+        "creator": "peter@javascript.com",
+        "creator_id": "847ec027-f659-4086-8032-5173e2f9c93a",
+        "_id": "2607c8d4-f563-429b-ada7-bb40827330cf"
     },
-    "Python": {
-        "de36d1aa-acb8-44e0-95a2-5b177d389ac6": {
-            "title": "title",
-            "category": "Python",
-            "content": "content",
-            "email": "peter@abv.bg",
-            "owner": "35c62d76-8152-4626-8712-eeb96381bea8",
-            "_id": "de36d1aa-acb8-44e0-95a2-5b177d389ac6"
-        }
+    "59d2253f-bde8-4fec-8ea9-15b026d191f9": {
+        "title": "Objects",
+        "category": "JavaScript",
+        "content": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Deleniti, excepturi magnam aliquid quamest fugit ipsa quidem impedit praesentium tempore placeat numquam blanditiis fuga soluta beatae perspiciatis voluptas atque obcaecati?",
+        "creator": "peter@javascript.com",
+        "creator_id": "847ec027-f659-4086-8032-5173e2f9c93a",
+        "_id": "59d2253f-bde8-4fec-8ea9-15b026d191f9"
     },
-    "CSharp": {
-        "60b17dab-19a7-4674-8f74-088c975cd7ee": {
-            "title": "title",
-            "category": "CSharp",
-            "content": "content",
-            "email": "peter@abv.bg",
-            "owner": "35c62d76-8152-4626-8712-eeb96381bea8",
-            "_id": "60b17dab-19a7-4674-8f74-088c975cd7ee"
-        }
+    "4f2aeb5e-7093-4b10-bacf-a8686329b63b": {
+        "title": "Title CSharp",
+        "category": "CSharp",
+        "content": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Deleniti, excepturi magnam aliquid quamest fugit ipsa quidem impedit praesentium tempore placeat numquam blanditiis fuga soluta beatae perspiciatis voluptas atque obcaecati?",
+        "creator": "peter@csharp.com",
+        "creator_id": "847ec027-f659-4086-8032-5173e2f9c93a",
+        "_id": "4f2aeb5e-7093-4b10-bacf-a8686329b63b"
     },
-    "Java": {
-        "c055b479-02c7-4bcd-9058-a07223628361": {
-            "title": "title",
-            "category": "Java",
-            "content": "content",
-            "email": "peter@abv.bg",
-            "owner": "35c62d76-8152-4626-8712-eeb96381bea8",
-            "_id": "c055b479-02c7-4bcd-9058-a07223628361"
-        }
+    "296e7d0d-ac27-4525-af67-a419a5b2d2ae": {
+        "title": "Title Java",
+        "category": "Java",
+        "content": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Deleniti, excepturi magnam aliquid quamest fugit ipsa quidem impedit praesentium tempore placeat numquam blanditiis fuga soluta beatae perspiciatis voluptas atque obcaecati?",
+        "creator": "peter@java.com",
+        "creator_id": "35c62d76-8152-4626-8712-eeb96381bea8",
+        "_id": "296e7d0d-ac27-4525-af67-a419a5b2d2ae"
+    },
+    "f7a3d42a-fbad-47f0-81cc-392f8bbcec7c": {
+        "title": "Title Python",
+        "category": "Python",
+        "content": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Deleniti, excepturi magnam aliquid quamest fugit ipsa quidem impedit praesentium tempore placeat numquam blanditiis fuga soluta beatae perspiciatis voluptas atque obcaecati?",
+        "creator": "peter@python.com",
+        "creator_id": "35c62d76-8152-4626-8712-eeb96381bea8",
+        "_id": "f7a3d42a-fbad-47f0-81cc-392f8bbcec7c"
     }
 }
