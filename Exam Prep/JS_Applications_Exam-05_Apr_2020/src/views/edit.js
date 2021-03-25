@@ -2,9 +2,8 @@ import { html } from '../../node_modules/lit-html/lit-html.js';
 import { getItemById, updateItem } from '../api/data.js';
 
 
-let editTeplate = (article, submit) => html`
+let editTemplate = (article, submit) => html`
 <div class="container">
-
     <form @submit=${submit}>
         <fieldset>
             <legend>Edit article</legend>
@@ -12,7 +11,6 @@ let editTeplate = (article, submit) => html`
                 <input type="text" name="title" id="title" placeholder="Arrays" .value="${article.title}">
                 <label for="title">Title:</label>
             </p>
-
             <p class="field category">
                 <input type="text" name="category" id="category" placeholder="JavaScript" .value="${article.category}">
                 <label for="category">Category:</label>
@@ -21,11 +19,9 @@ let editTeplate = (article, submit) => html`
                 <textarea name="content" id="content" .value="${article.content}"></textarea>
                 <label for="content">Content:</label>
             </p>
-
             <p class="field submit">
                 <button class="btn submit" type="submit">Edit</button>
             </p>
-
         </fieldset>
     </form>
 </div>`;
@@ -35,7 +31,7 @@ export async function editPage(ctx) {
     console.log('edit');
     let id = ctx.params.id;
     let article = await getItemById(id);
-    ctx.render(editTeplate(article, submit));
+    ctx.render(editTemplate(article, submit));
 
     async function submit(ev) {
         ev.preventDefault();
