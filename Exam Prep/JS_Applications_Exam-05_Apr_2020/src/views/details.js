@@ -1,7 +1,7 @@
 import { html } from '../../node_modules/lit-html/lit-html.js';
 import { deleteItem, getItemById } from '../api/data.js';
 
-let detailsTamplate = (article, deleteArticle, userId, ownerId) => html`
+let detailsTemplate = (article, deleteArticle, userId, ownerId) => html`
 <div class="container details">
     <div class="details-content">
         <h2>${article.title}</h2>
@@ -23,8 +23,8 @@ export async function detailsPage(ctx) {
     let article = await getItemById(id);
 
     let userId = sessionStorage.getItem('ownerId')
-    let ownerId = article.owner
-    ctx.render(detailsTamplate(article, deleteArticle, userId, ownerId));
+    let ownerId = article.creator_id
+    ctx.render(detailsTemplate(article, deleteArticle, userId, ownerId));
 
     async function deleteArticle() {
         let confirmation = confirm('Are you sure you want to delete this item?');
