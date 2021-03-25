@@ -2,7 +2,7 @@ import page from '../node_modules/page/page.mjs';
 import { render } from '../node_modules/lit-html/lit-html.js';
 import { logout } from './api/data.js';
 
-import { loadHome } from './views/home.js';
+import { homePage } from './views/home.js';
 import { createPage } from './views/create.js';
 import { registerPage } from './views/register.js';
 import { loginPage } from './views/login.js';
@@ -11,7 +11,7 @@ import { editPage } from './views/edit.js';
 
 let main = document.querySelector('main');
 
-page('/', middleware, loadHome);
+page('/', middleware, homePage);
 page('/create', middleware, createPage);
 page('/register', middleware, registerPage);
 page('/login', middleware, loginPage);
