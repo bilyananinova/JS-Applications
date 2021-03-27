@@ -1,0 +1,52 @@
+{
+    "74755691-704e-4fab-b66e-2a7311cd73a5": {
+        "name": "Nike Pegasus",
+        "price": 72.90,
+        "img": "https://i1.t4s.cz/products/ar4149-001/nike-air-zoom-pegasus-36-gs-251390-ar4149-001.jpeg",
+        "description": "Lorem ipsum, dolor sit amet consectetur adipisicing elit.",
+        "bougth": [],
+        "creator_id": "847ec027-f659-4086-8032-5173e2f9c93a",
+        "_id": "74755691-704e-4fab-b66e-2a7311cd73a5",
+        "brand": "Nike"
+    },
+    "07d40ad6-9678-4d46-8cb7-1eb6f1b6ce67": {
+        "name": "Adidas Falcon",
+        "price": 132.00,
+        "img": "https://www.shooos.bg/media/catalog/product/cache/20/image/9df78eab33525d08d6e5fb8d27136e95/a/d/adidas-falcon-cg6211.jpg",
+        "description": "Lorem ipsum, dolor sit amet consectetur adipisicing elit.",
+        "bougth": [],
+        "creator_id": "847ec027-f659-4086-8032-5173e2f9c93a",
+        "_id": "07d40ad6-9678-4d46-8cb7-1eb6f1b6ce67",
+        "brand": "Adidas"
+    },
+    "63c43ad6-5697-4d46-9gd8-1eb6f1b6ce33": {
+        "name": "Under Armour HOVR",
+        "price": 149.99,
+        "img": "https://i1.t4s.cz/products/3023295-602/under-armour-ua-w-hovr-phantom-se-trek-263676-3023295-603.jpg",
+        "description": "Lorem ipsum, dolor sit amet consectetur adipisicing elit.",
+        "bougth": [],
+        "creator_id": "35c62d76-8152-4626-8712-eeb96381bea8",
+        "_id": "63c43ad6-5697-4d46-9gd8-1eb6f1b6ce33",
+        "brand": "Under Armour"
+    },
+    "58c43ad6-9678-4d46-9gd8-1eb6f1b6ce97": {
+        "name": "Reebok Nano-9",
+        "price": 92.29,
+        "img": "https://admin.startfitness.co.uk/media/catalog/product/r/e/reebok-crossfit-nano-9-0-fu6827.jpg",
+        "description": "Lorem ipsum, dolor sit amet consectetur adipisicing elit.",
+        "bougth": [],
+        "creator_id": "35c62d76-8152-4626-8712-eeb96381bea8",
+        "_id": "58c43ad6-9678-4d46-9gd8-1eb6f1b6ce97",
+        "brand": "Reebok"
+    },
+    "39d40ad6-9678-4d46-9gd8-1eb6f1b6ce97": {
+        "name": "Asics Gel-Quantum",
+        "price": 140.00,
+        "img": "https://d1zkmbbkp46fmz.cloudfront.net/dbzh4XEt8gAeDWA8NmRQVkbja9Y=/fit-in/700x700/9/6/8/c/968c97afa73e54a7b1d4fcdc2caf4bc15e161e34_Asics_Gel_Lyte_V_Mantle_Green_White_1191A267_300_1.jpg",
+        "description": "Lorem ipsum, dolor sit amet consectetur adipisicing elit    .",
+        "bougth": [],
+        "creator_id": "35c62d76-8152-4626-8712-eeb96381bea8",
+        "_id": "39d40ad6-9678-4d46-9gd8-1eb6f1b6ce97",
+        "brand": "Asics"
+    }
+}
