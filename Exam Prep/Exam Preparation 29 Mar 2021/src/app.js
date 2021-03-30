@@ -11,6 +11,7 @@ import { createPage } from './pages/create.js';
 import { detailsPage } from './pages/details.js';
 import { editPage } from './pages/edit.js';
 import { myListings } from './pages/myPage.js';
+import { searchPage } from './pages/search.js';
 
 let main = document.querySelector('#site-content');
 
@@ -22,6 +23,7 @@ page('/create', middleware, createPage);
 page('/details/:id', middleware, detailsPage);
 page('/edit/:id', middleware, editPage);
 page('/myListings', middleware, myListings);
+page('/search', middleware, searchPage);
 
 setUserNav();
 page.start();
