@@ -1,0 +1,56 @@
+import { html } from '../../node_modules/lit-html/lit-html.js';
+import { login } from '../api/data.js';
+
+let loginTemplate = (submit) => html`
+<section class="login">
+    <form @submit=${submit} action="#" method="post">
+        <fieldset>
+            <legend>Login</legend>
+            <p class="field">
+                <label for="username">Username</label>
+                <span class="input">
+                    <input type="text" name="username" id="username" placeholder="Username" />
+                    <span class="actions"></span>
+                    <i class="fas fa-user"></i>
+                </span>
+            </p>
+            <p class="field">
+                <label for="password">Password</label>
+                <span class="input">
+                    <input type="password" name="password" id="password" placeholder="Password" />
+                    <span class="actions"></span>
+                    <i class="fas fa-key"></i>
+                </span>
+            </p>
+            <input class="button" type="submit" class="submit" value="Login" />
+        </fieldset>
+    </form>
+</section>`;
+
+
+export async function loginPage(ctx) {
+    // console.log('loginPage');
+    ctx.render(loginTemplate(submit));
+
+
+    async function submit(ev) {
+        ev.preventDefault();
+        let formData = new FormData(ev.target);
+        let email = formData.get('username').trim();
+        let password = formData.get('password').trim();
+
+        try {
+            if (!email || !password) {
+                alert('All fields are required!')
+            }
+
+            await login(email, password);
+            ctx.setUserNav();
+            ctx.page.redirect('/');
+
+        } catch (err) {
+            alert('All fields are required!')
+        }
+    }
+
+}
