@@ -1,0 +1,44 @@
+{
+    "59ae4d40a732adc012718a8e": {
+        "_id": "59ae4d40a732adc012718a8e",
+        "text": "Some chirpy chirps",
+        "creator": "35c62d76-8152-4626-8712-eeb96381bea8",
+        "author": "peter@abv.bg"
+    },
+    "59ae4ddb401fa7724bb78208": {
+        "_id": "59ae4ddb401fa7724bb78208",
+        "text": "Chirpier",
+        "creator": "35c62d76-8152-4626-8712-eeb96381bea8",
+        "author": "peter@abv.bg"
+    },
+    "59ae4e3b68c53f4a044e9b5a": {
+        "_id": "59ae4e3b68c53f4a044e9b5a",
+        "text": "Chirpyyyyy",
+        "creator": "847ec027-f659-4086-8032-5173e2f9c93a",
+        "author": "george@abv.bg"
+    },
+    "59ae7752e884417c04e803a4": {
+        "_id": "59ae7752e884417c04e803a4",
+        "text": "yohooo",
+        "creator": "35c62d76-8152-4626-8712-eeb96381bea8",
+        "author": "peter@abv.bg"
+    },
+    "59ae8c2dffa95a8c04da66b1": {
+        "_id": "59ae8c2dffa95a8c04da66b1",
+        "text": "My first chirp",
+        "creator": "847ec027-f659-4086-8032-5173e2f9c93a",
+        "author": "george@abv.bg"
+    },
+    "59ae8dd6e2cfb2e75ab07afa": {
+        "_id": "59ae8dd6e2cfb2e75ab07afa",
+        "text": "First place at OIB startup weekend!",
+        "creator": "847ec027-f659-4086-8032-5173e2f9c93a",
+        "author": "george@abv.bg"
+    },
+    "59afe6ba797e4f8204828c90": {
+        "_id": "59afe6ba797e4f8204828c90",
+        "text": "#testchirp",
+        "creator": "35c62d76-8152-4626-8712-eeb96381bea8",
+        "author": "peter@abv.bg"
+    }
+}

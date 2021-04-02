@@ -1,0 +1,16 @@
+{
+    "59ae425c14ee505004862409": {
+        "_id": "59ae425c14ee505004862409",
+        "subscriptions": [
+            "george@abv.bg"
+        ],
+        "username": "peter@abv.bg"
+    },
+    "59ae8fc9797e4f82047d0ea3": {
+        "_id": "59ae8fc9797e4f82047d0ea3",
+        "subscriptions": [
+            "peter@abv.bg"
+        ],
+        "username": "george@abv.bg"
+    }
+}
