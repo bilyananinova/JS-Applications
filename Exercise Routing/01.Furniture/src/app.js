@@ -1,6 +1,8 @@
 import page from '../node_modules/page/page.mjs';
 import { render } from '../node_modules/lit-html/lit-html.js';
 
+import { logout } from '../src/api/data.js'
+
 import { createPage } from './pages/create.js';
 import { dashboardPage } from './pages/dashboard.js';
 import { detailsPage } from './pages/details.js';
@@ -22,6 +24,11 @@ page('/login', middleware, loginPage);
 
 setUserNav();
 page.start();
+
+document.getElementById('logoutBtn').addEventListener('click', async () => {
+    await logout();
+    setUserNav();
+})
 
 function middleware(ctx, next) {
     ctx.render = (content) => render(content, main);
