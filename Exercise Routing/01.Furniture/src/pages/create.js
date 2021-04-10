@@ -48,6 +48,7 @@ let createTemplate = (submit, invMake, invModel, invYear, invDesc, invPrice, inv
 
 export async function createPage(ctx) {
     // console.log('createPage');
+
     ctx.render(createTemplate(submit));
 
     async function submit(ev) {
@@ -84,7 +85,7 @@ export async function createPage(ctx) {
             alert('Year must be between 1950 and 2050');
         }
 
-        if (formData.get('description').length <= 10) {
+        if (formData.get('description').length < 10) {
             invDesc = true;
             alert('Description must be more than 10 symbols');
         }
